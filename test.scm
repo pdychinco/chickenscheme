@@ -27,7 +27,7 @@
 
 (define (IO)
     (display "Enter your name: ")
-    (let ((name (read)))
+    (let ((name (read))) ;
         (display "Hello, ")
         (display name)
         (display "!")
@@ -62,3 +62,16 @@
 
 ;; Example usage
 (two-sum '(2 7 11 15) 9) ; => (0 1)
+
+(define (valid-parentheses str)
+(let loop ((i 0) (balance 0))
+  (cond
+    ((< balance 0) #f)                         ; More closing than opening
+    ((>= i (string-length str)) (= balance 0)) ; End of string, balance must be 0
+    ((char=? (string-ref str i) #\()           ; Open parenthesis
+     (loop (+ i 1) (+ balance 1)))
+    ((char=? (string-ref str i) #\))           ; Close parenthesis
+     (loop (+ i 1) (- balance 1)))
+    (else (loop (+ i 1) balance)))))           ; Ignore other characters (optional)
+
+
