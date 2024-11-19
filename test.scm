@@ -46,23 +46,19 @@
         (else 
         (cons i (helper (+ i 1))))))        ; Otherwise, return the number
     (helper 1)                              ; Start at 1
-)                            
+)     
 
-; continuation example 
-(define (find-first-even lst)
-    (call/cc                       ; Capture the current continuation
-     (lambda (exit)
-       (for-each 
-        (lambda (x)
-          (display (string-append "Checking: " (number->string x)))
-          (newline)
-          (if (even? x)
-              (exit x)             ; Exit immediately and return the first even number
-              #f))                 ; Continue if the number is not even
-        lst)
-       'no-even-numbers)))         ; Return this if no even number is found
-  
-  (display (find-first-even '(1 3 5 7 4 9))) ; Outputs "Checking: 1", "Checking: 3", etc., and returns 4
-  (newline)
-  (display (find-first-even '(1 3 5 7 9)))   ; Outputs "Checking: 1", "Checking: 3", etc., and returns "no-even-numbers"
-  
+; two sum leetcode
+(define (two-sum lst target)
+(let loop1 ((lst1 lst) (i 0))
+  (if (null? lst1)
+      #f ; Return #f if no solution is found
+      (let loop2 ((lst2 (cdr lst1)) (j (+ i 1)))
+        (if (null? lst2)
+            (loop1 (cdr lst1) (+ i 1)) ; Move to the next element in lst1
+            (if (= (+ (car lst1) (car lst2)) target)
+                (list i j) ; Return indices as a list
+                (loop2 (cdr lst2) (+ j 1)))))))) ; Move to the next element in lst2
+
+;; Example usage
+(two-sum '(2 7 11 15) 9) ; => (0 1)
