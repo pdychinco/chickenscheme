@@ -1,31 +1,32 @@
 ; Expressions
-(+ 1 2 3)  ; Adds 1, 2, and 3, resulting in 6
-(* 2 3 4)  ; Multiplies 2, 3, and 4, resulting in 24
+(+ 1 2 3)  ; 6
+(* 2 3 4)  ; 24
 
 ; Variables
 (define x 10)
 (define y 20)
-(+ x y)  ; Adds x and y, resulting in 30
+(+ x y)  ; x + y = 30
 
-; defining a function
+; Function
 (define (add x y)
     (+ x y))
-(add 10 20)  ; Calls the add function with arguments 10 and 20, resulting in 30
+
+(add 10 20)  ; 30
 
 ; Conditionals
 (if (> x y)
-    "x is greater" ;If Clause
-    "y is greater or equal") ; Else Clause
+    "x is greater"                ;  If Clause
+    "y is greater or equal")      ;  Else Clause
 
 ; Conditionals: Multiple Clauses
 (cond 
-    ((> x y) "x is greater") ; If Clause
-    ((< x y) "y is greater") ; Else If Clause
-    (else "x and y are equal")) ; Else Clause
+    ((> x y) "x is greater")      ; If Clause
+    ((< x y) "y is greater")      ; Else If Clause
+    (else "x and y are equal"))   ; Else Clause
 
 ; Lambda Expression
-(define some_function
-    (lambda (x) (* x X)))
+((lambda (x y) (+ x y)) 3 4) ; 7
+
 
 ; First Class Function
 ; Map function 
