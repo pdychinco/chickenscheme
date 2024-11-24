@@ -14,17 +14,24 @@
 (add 10 20)  ; 30
 
 ; Conditionals
+(define x 10)
+(define y 20)
 (if (> x y)
-    "x is greater"                ;  If Clause
-    "y is greater or equal")      ;  Else Clause
+    (display "x is greater")                ;  If Clause
+    (display "y is greater or equal"))      ;  Else Clause
 
 ; Conditionals: Multiple Clauses
 (cond 
     ((> x y) "x is greater")      ; If Clause
     ((< x y) "y is greater")      ; Else If Clause
-    (else "x and y are equal"))   ; Else Clause
+    (else "x and y are equal"))   ; Else Clause / Default Case
+
+
+; Recursion
+(define (factorial_tr))
 
 ; Lambda Expression
+; Also called unamed procedure
 ((lambda (x y) (+ x y)) 3 4) ; 7
 
 
@@ -35,6 +42,94 @@
         '()
         (cons (f (car lst)) (map f (cdr lst))))
 
+
+; Checking Equality in Scheme
+; = use to check equality of numbers
+(= 3 3) ; #t
+(= 3 4) ; #f
+(define x 10)
+(define y 10)
+(= x y) ; #t
+(define z 20)
+(= x z) ; #f
+(= 6 (+ 2 4)) ; #t
+
+
+; eq? 
+; eq? is used to check if two objects are the same
+(eq? 'a 'a) ; #t
+(eq? 'a 'b) ; #f
+
+(define x 10)
+(define y 10)
+(eq? x y) ; #t
+
+(define lst1 '(1 2 3))
+(define lst2 '(1 2 3))
+(eq? lst1 lst2) ; #f because they are different objects in memory
+
+;equal?
+; equal? used for deep comparison checking if they have the same structure and content 
+(equal? 'a 'a) ; #t
+(equal? 'a 'b) ; #f
+; compare a list
+(define lst1 '(1 2 3))
+(define lst2 '(1 2 3))
+(equal? lst1 lst2) ; #t
+; compare a list with a different order
+(define lst3 '(3 2 1))
+(equal? lst1 lst3) ; #f
+; compare a list with same content but different structure
+(define lst4 '(1 (2 3)))
+(define lst5 '(1 2 3))
+(equal? lst4 lst5) ; #f
+
+
+; List 
+(list 10 20 30)    ; (10 20 30)
+' (10 20 30)       ; (10 20 30)
+(quote (10 20 30)) ; (10 20 30)
+; List are Heterogeneous
+(list 10 "hello" 3.14) ; (10 "hello" 3.14)
+; Difference of list (multiple) and quote (1 arg)
+(+ 1 2) ;3
+'(+ 1 2)  ;(+ 1 2)
+(quote(+ 1 2)) ;(+ 1 2)
+(list + 1 2) ;(#<procedure+> 1 2)
+(list (+ 1 2)) ;(3)
+
+(define x 10)
+(define y 20)
+(define z 30)
+(define double 
+    (lambda (x) (* 2 x)))
+(define lst2 (list 'a 2 "Hello" 'world / #f + double 10 x 'y 'a #\H '(1 2 3) (+ 3 1)))      ; Evaluates each piece the expression
+(define lst3 (quote ( 'a 2 "Hello" 'world / #f + double 10 x 'y 'a #\H (1 2 3) (+ 3 1) )))  ; Does not valuate the expression
+; ( a  2 Hello  world  #<subr (/ arg1 :rest args)> #f #<subr (+ :rest args)> #<closure (double x)> 10 10 y a H (1 2 3) 4)
+; ('a 2  Hello  'world /                           #f         + double 10 x 'y 'a H (1 2 3)                    (+ 3 1))
+(display lst2)
+(display lst3)
+
+; List Operations
+; car
+(car '(1 2 3)) ; 1 - gets the head of the list
+; cdr
+(cdr '(1 2 3)) ; (2 3) - gets the tail of the list
+(car (cdr '(1 2 3))) ; 2 - gets the second element of the list
+(cdr (cdr (cdr '(1 2 3)))) ; () - gets the tail of the tail of the tail of the list
+(cdr '((1 2 3))) ; () - gets the tail of the list 
+(cadr '(1 2 3)) ; 2 - gets the second element of the list
+(cddr '(1 2 3)) ; (3) - gets the tail of the tail of the list
+
+(define lst4 '((1 2) (3 4 (5 6)) (7 8) ))
+(car lst4) ; (1 2)
+(cdr lst4) ; ((3 4 (5 6)) (7 8))
+(car (car lst4)) ; 1
+(cdr (car lst4)) ; (2)
+(car (cdr lst4)) ; (3 4 (5 6))
+(cdr (cdr lst4)) ; ((7 8))
+(define oplst (list + - * /))
+((car oplst) 10 20) ; 30
 
 
 ; (load "test.scm")
@@ -50,10 +145,10 @@
 
 ; tail recursive recursion
 (define (my-factorial_tr n)
-    (let loop ((n n) (result 1))
-        (if (<= n 1)
-            result
-        (loop (- n 1) (* n result)))))
+    (let aux ((x n) (acc 1))
+        (if (<= x 1)
+            acc
+        (aux (- x 1) (* x acc)))))
 
 ; recursion through list using loop 
 (define (my-intersperse lst filler)
