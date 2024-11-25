@@ -4,10 +4,10 @@
     (cons (car lst) (cons (car lst) (duplicate (cdr lst)) ))))
 
 ; 1 Map ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-(define (map func lst)
-(if (null? lst)
-    '()
-    (cons (func (car lst)) (map func (cdr lst ))  )))
+(define (my-map func lst)
+    (if (null? lst)
+        '()
+        (cons (func (car lst)) (my-map func (cdr lst )))))
 
 ; Map Example
 ;(define (square x) (* x x))
@@ -27,7 +27,7 @@
 )
 
 ; Filter example:
-(define (even? x) (= 0 (modulo x 2)))
+(define (my-even? x) (= 0 (modulo x 2)))
 ; (display (filter even? '(1 2 3 4 5 6)))  ; (2 4 6)
 
 
@@ -43,7 +43,7 @@
 
 
 ; 4 Compose ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-(define (compose funcA funcB)
+(define (my-compose funcA funcB)
     (lambda (x) (funcA (funcB x))))
 
 ; Compose Example
