@@ -54,32 +54,32 @@
 
 ; eq? 
 ; eq? is used to check if two objects are the same
-(eq? 'a 'a) ; #t
-(eq? 'a 'b) ; #f
+;(eq? 'a 'a) ; #t
+;(eq? 'a 'b) ; #f
 
 (define x 10)
 (define y 10)
-(eq? x y) ; #t
+;(eq? x y) ; #t
 
 (define lst1 '(1 2 3))
 (define lst2 '(1 2 3))
-(eq? lst1 lst2) ; #f because they are different objects in memory
+;(eq? lst1 lst2) ; #f because they are different objects in memory
 
 ;equal?
 ; equal? used for deep comparison checking if they have the same structure and content 
-(equal? 'a 'a) ; #t
-(equal? 'a 'b) ; #f
+;(equal? 'a 'a) ; #t
+;(equal? 'a 'b) ; #f
 ; compare a list
 (define lst1 '(1 2 3))
 (define lst2 '(1 2 3))
-(equal? lst1 lst2) ; #t
+;(equal? lst1 lst2) ; #t
 ; compare a list with a different order
 (define lst3 '(3 2 1))
-(equal? lst1 lst3) ; #f
+;(equal? lst1 lst3) ; #f
 ; compare a list with same content but different structure
 (define lst4 '(1 (2 3)))
 (define lst5 '(1 2 3))
-(equal? lst4 lst5) ; #f
+;(equal? lst4 lst5) ; #f
 
 
 ; List -------------------------------------------------------------------------------------------------------------------
@@ -114,11 +114,11 @@
 (define (double x) (* 2 x))
 (define lst2 (list    'a 2 "Hello" 'world / #f + double 10 x 'y 'a #\H '(1 2 3) (+ 3 1)  ))      ; Evaluates each piece the expression
 (define lst3 (quote ( 'a 2 "Hello" 'world / #f + double 10 x 'y 'a #\H '(1 2 3) (+ 3 1) )))      ; Does not valuate the expression
-(display "Using list: ")
-(display lst1)
+;(display "Using list: ")
+;(display lst1)
 (newline)
-(display "Using quote: ")
-(display lst2)
+;(display "Using quote: ")
+;(display lst2)
 
 ; Define a dynamic list (constructed using `list`)
 (define dynamic-list
@@ -127,7 +127,7 @@
         (+ 2 3)           ; Expression that evaluates to 5
         '(a b c)          ; Quoted list, treated as literal
         "hello"))         ; String
-(display dynamic-list)    ; (10  x    5     (a b c) "hello")
+;(display dynamic-list)    ; (10  x    5     (a b c) "hello")
 
 ; Define a static list (constructed using `quote`)
 (define static-list
@@ -136,17 +136,17 @@
     (+ 2 3)             ; Expression, not evaluated
     '(a b c)             ; List, literal
     "hello"))           ; String
-(display static-list)   ; (10 x (+ 2 3) (quote (a b c)) hello)
+;(display static-list)   ; (10 x (+ 2 3) (quote (a b c)) hello)
 
 (define x 3)
 (define dynamic-list   (list 10  x (+ 2 3) '(a b c) "hello"))
-(display dynamic-list)    ; (10  3    5     (a b c) "hello")
+;(display dynamic-list)    ; (10  3    5     (a b c) "hello")
 
 (define static-list      '(10 x (+ 2 3) '(a b c) "hello"))
-(display static-list)   ; (10 x (+ 2 3) (quote(a b c)) hello)
+;(display static-list)   ; (10 x (+ 2 3) (quote(a b c)) hello)
 
-(display lst2)
-(display lst3)
+;(display lst2)
+;(display lst3)
 
 ; List Operations
 
@@ -253,7 +253,7 @@
 
 ; Map Example
 (define (square x) (* x x))
-(map square '(1 2 3 4 5))       ; (1 4 9 16 25)
+; (map square '(1 2 3 4 5))       ; (1 4 9 16 25)
 
 
 ; 2 Filter ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -270,7 +270,7 @@
 
 ; Filter example:
 (define (even? x) (= 0 (modulo x 2)))
-(display (filter even? '(1 2 3 4 5 6)))  ; (2 4 6)
+; (display (filter even? '(1 2 3 4 5 6)))  ; (2 4 6)
 
 
 ; 3 Fold L ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -281,7 +281,7 @@
 
 ; FoldL Example:
 (define (add x y) (+ x y))
-(display (foldL add 0 '(1 2 3 4 5)))  ; 15
+; (display (foldL add 0 '(1 2 3 4 5)))  ; 15
 
 
 ; 4 Compose ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -292,7 +292,7 @@
 (define (add2 x) (+ x 2))
 (define (square x) (* x x))
 (define add2-square (compose square add2))
-(add2-square 3) ; 25
+;(add2-square 3) ; 25
 
 
 
