@@ -16,20 +16,20 @@
 ; Conditionals --------------------------------------------------------------------
 (define x 10)
 (define y 20)
-(if (> x y)
-    (display "x is greater")                ;  If Clause
-    (display "y is greater or equal"))      ;  Else Clause
+;(if (> x y)
+ ;   (display "x is greater")                ;  If Clause
+  ;  (display "y is greater or equal"))      ;  Else Clause
 
 ; Conditionals: Multiple Clauses
-(cond 
-    ((> x y) "x is greater")      ; If Clause
-    ((< x y) "y is greater")      ; Else If Clause
-    (else "x and y are equal"))   ; Else Clause / Default Case
+;(cond 
+ ;   ((> x y) "x is greater")      ; If Clause
+  ;  ((< x y) "y is greater")      ; Else If Clause
+   ; (else "x and y are equal"))   ; Else Clause / Default Case
 
 ; Lambda Expression --------------------------------------------------------------------
-((lambda (x y) (+ x y)) 3 4)  ; 7
+;((lambda (x y) (+ x y)) 3 4)  ; 7
 ; Also called unamed procedure
-((lambda (x y) (+ x y)) 3 4) ; 7
+;((lambda (x y) (+ x y)) 3 4) ; 7
 
 
 ; First Class Function --------------------------------------------------------------------
@@ -156,12 +156,6 @@
 (cdr '(1 2 3)) ; (2 3) 
 
 ; Getting sum of a list using car and cdr
-(define (list-sum lst) 
-    (if (null? lst)
-        0 
-        (+ car lst (list-sum (cdr lst)))))
-
-(sum-list '(1 2 3 4))  ; 10
 
 
 
